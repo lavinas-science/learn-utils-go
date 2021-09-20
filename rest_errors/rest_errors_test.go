@@ -50,3 +50,14 @@ func TestNewInternalServerError(t *testing.T) {
 	assert.EqualValues(t, e.Error, error)
 	assert.EqualValues(t, e.Status, status)
 }
+
+func TestNewNotImplementedError(t *testing.T) {
+	message := "Message"
+	status := http.StatusNotImplemented
+	error := "not_implemented" 
+	e := NewNotImplementedError(message)
+	assert.NotNil(t, e)
+	assert.EqualValues(t, e.Message, message)
+	assert.EqualValues(t, e.Error, error)
+	assert.EqualValues(t, e.Status, status)
+}
