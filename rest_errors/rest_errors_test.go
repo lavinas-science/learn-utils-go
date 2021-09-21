@@ -10,7 +10,7 @@ import (
 func TestNewRestErr(t *testing.T) {
 	message := "Message"
 	status := http.StatusBadRequest
-	error := "found" 
+	error := "found"
 	e := NewRestErr(message, status, error)
 	assert.NotNil(t, e)
 	assert.EqualValues(t, e.Message, message)
@@ -21,7 +21,7 @@ func TestNewRestErr(t *testing.T) {
 func TestNewBadRequestError(t *testing.T) {
 	message := "Message"
 	status := http.StatusBadRequest
-	error := "bad_request" 
+	error := "bad_request"
 	e := NewBadRequestError(message)
 	assert.NotNil(t, e)
 	assert.EqualValues(t, e.Message, message)
@@ -32,7 +32,7 @@ func TestNewBadRequestError(t *testing.T) {
 func TestNewNotFoundError(t *testing.T) {
 	message := "Message"
 	status := http.StatusNotFound
-	error := "not_found" 
+	error := "not_found"
 	e := NewNotFoundError(message)
 	assert.NotNil(t, e)
 	assert.EqualValues(t, e.Message, message)
@@ -43,7 +43,7 @@ func TestNewNotFoundError(t *testing.T) {
 func TestNewInternalServerError(t *testing.T) {
 	message := "Message"
 	status := http.StatusInternalServerError
-	error := "internal_server_error" 
+	error := "internal_server_error"
 	e := NewInternalServerError(message)
 	assert.NotNil(t, e)
 	assert.EqualValues(t, e.Message, message)
@@ -54,7 +54,7 @@ func TestNewInternalServerError(t *testing.T) {
 func TestNewNotImplementedError(t *testing.T) {
 	message := "Message"
 	status := http.StatusNotImplemented
-	error := "not_implemented" 
+	error := "not_implemented"
 	e := NewNotImplementedError(message)
 	assert.NotNil(t, e)
 	assert.EqualValues(t, e.Message, message)

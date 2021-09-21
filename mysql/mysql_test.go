@@ -23,7 +23,3 @@ func TestParseErrorNoRecord(t *testing.T) {
 	assert.NotNil(t, p)
 	assert.EqualValues(t, np, p)
 }
-
-
-
-
