@@ -61,3 +61,14 @@ func TestNewNotImplementedError(t *testing.T) {
 	assert.EqualValues(t, e.Error, error)
 	assert.EqualValues(t, e.Status, status)
 }
+
+func TestNewUnauthorizedError(t *testing.T) {
+	message := "Message"
+	status := http.StatusUnauthorized
+	error := "unauthorized"
+	e := NewUnauthorizedError(message)
+	assert.NotNil(t, e)
+	assert.EqualValues(t, e.Message, message)
+	assert.EqualValues(t, e.Error, error)
+	assert.EqualValues(t, e.Status, status)
+}

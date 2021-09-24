@@ -29,3 +29,7 @@ func NewInternalServerError(message string) *RestErr {
 func NewNotImplementedError(message string) *RestErr {
 	return NewRestErr(message, http.StatusNotImplemented, "not_implemented")
 }
+
+func NewUnauthorizedError(message string) *RestErr {
+	return NewRestErr(message, http.StatusUnauthorized, "unauthorized")
+}
