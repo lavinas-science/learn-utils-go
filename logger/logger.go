@@ -6,11 +6,15 @@ import (
 )
 
 var (
-	log *zap.Logger
+	log logger
 )
 
-func GetLogger() *zap.Logger {
-	return log
+type logger struct {
+	log *zap.Logger
+}
+
+func GetLogger() *logger {
+	return &log
 }
 
 func init() {
@@ -29,18 +33,22 @@ func init() {
 	}
 
 	var err error
-	if log, err = logConfig.Build(); err != nil {
+	if log.log, err = logConfig.Build(); err != nil {
 		panic(err)
 	}
 }
 
 func Info(msg string, tags ...zap.Field) {
-	log.Info(msg, tags...)
-	log.Sync()
+	log.log.Info(msg, tags...)
+	log.log.Sync()
 }
 
 func Error(msg string, err error, tags ...zap.Field) {
 	tags = append(tags, zap.NamedError("error", err))
-	log.Error(msg, tags...)
-	log.Sync()
+	log.log.Error(msg, tags...)
+	log.log.Sync()
+}
+
+func (l *logger) Printf() {
+	
 }
