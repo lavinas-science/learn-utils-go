@@ -1,6 +1,8 @@
 package logger
 
 import (
+	"fmt"
+	
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -49,6 +51,11 @@ func Error(msg string, err error, tags ...zap.Field) {
 	log.log.Sync()
 }
 
-func (l *logger) Printf() {
+func (l *logger) Printf(format string, v...interface{}) {
+	if len(v) == 0 {
+		Info(format)
+		return
+	}
+	Info(fmt.Sprintf(format, v...))
 	
 }
