@@ -1,6 +1,7 @@
 package rest_errors
 
 import (
+	"fmt"
 	"net/http"
 	"testing"
 
@@ -10,12 +11,12 @@ import (
 func TestNewRestErr(t *testing.T) {
 	message := "Message"
 	status := http.StatusBadRequest
-	error := "found"
+	error := "dada"
 	e := NewRestErr(message, status, error)
 	assert.NotNil(t, e)
-	assert.EqualValues(t, e.Message, message)
-	assert.EqualValues(t, e.Error, error)
-	assert.EqualValues(t, e.Status, status)
+	assert.EqualValues(t, e.Message(), message)
+	assert.EqualValues(t, e.Error(), fmt.Sprintf("message: %s - status: %d - error: %s", message, status, error))
+	assert.EqualValues(t, e.Status(), status)
 }
 
 func TestNewBadRequestError(t *testing.T) {
@@ -24,9 +25,9 @@ func TestNewBadRequestError(t *testing.T) {
 	error := "bad_request"
 	e := NewBadRequestError(message)
 	assert.NotNil(t, e)
-	assert.EqualValues(t, e.Message, message)
-	assert.EqualValues(t, e.Error, error)
-	assert.EqualValues(t, e.Status, status)
+	assert.EqualValues(t, e.Message(), message)
+	assert.EqualValues(t, e.Error(), fmt.Sprintf("message: %s - status: %d - error: %s", message, status, error))
+	assert.EqualValues(t, e.Status(), status)
 }
 
 func TestNewNotFoundError(t *testing.T) {
@@ -35,9 +36,9 @@ func TestNewNotFoundError(t *testing.T) {
 	error := "not_found"
 	e := NewNotFoundError(message)
 	assert.NotNil(t, e)
-	assert.EqualValues(t, e.Message, message)
-	assert.EqualValues(t, e.Error, error)
-	assert.EqualValues(t, e.Status, status)
+	assert.EqualValues(t, e.Message(), message)
+	assert.EqualValues(t, e.Error(), fmt.Sprintf("message: %s - status: %d - error: %s", message, status, error))
+	assert.EqualValues(t, e.Status(), status)
 }
 
 func TestNewInternalServerError(t *testing.T) {
@@ -46,9 +47,9 @@ func TestNewInternalServerError(t *testing.T) {
 	error := "internal_server_error"
 	e := NewInternalServerError(message)
 	assert.NotNil(t, e)
-	assert.EqualValues(t, e.Message, message)
-	assert.EqualValues(t, e.Error, error)
-	assert.EqualValues(t, e.Status, status)
+	assert.EqualValues(t, e.Message(), message)
+	assert.EqualValues(t, e.Error(), fmt.Sprintf("message: %s - status: %d - error: %s", message, status, error))
+	assert.EqualValues(t, e.Status(), status)
 }
 
 func TestNewNotImplementedError(t *testing.T) {
@@ -57,9 +58,9 @@ func TestNewNotImplementedError(t *testing.T) {
 	error := "not_implemented"
 	e := NewNotImplementedError(message)
 	assert.NotNil(t, e)
-	assert.EqualValues(t, e.Message, message)
-	assert.EqualValues(t, e.Error, error)
-	assert.EqualValues(t, e.Status, status)
+	assert.EqualValues(t, e.Message(), message)
+	assert.EqualValues(t, e.Error(), fmt.Sprintf("message: %s - status: %d - error: %s", message, status, error))
+	assert.EqualValues(t, e.Status(), status)
 }
 
 func TestNewUnauthorizedError(t *testing.T) {
@@ -68,7 +69,7 @@ func TestNewUnauthorizedError(t *testing.T) {
 	error := "unauthorized"
 	e := NewUnauthorizedError(message)
 	assert.NotNil(t, e)
-	assert.EqualValues(t, e.Message, message)
-	assert.EqualValues(t, e.Error, error)
-	assert.EqualValues(t, e.Status, status)
+	assert.EqualValues(t, e.Message(), message)
+	assert.EqualValues(t, e.Error(), fmt.Sprintf("message: %s - status: %d - error: %s", message, status, error))
+	assert.EqualValues(t, e.Status(), status)
 }

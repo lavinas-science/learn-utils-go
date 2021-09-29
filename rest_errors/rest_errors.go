@@ -18,7 +18,7 @@ type restErr struct {
 }
 
 func (e restErr) Error() string {
-	return fmt.Sprintf("message: %s - status: %d - error %s ", e.message, e.status, e.error)
+	return fmt.Sprintf("message: %s - status: %d - error: %s", e.message, e.status, e.error)
 }
 
 func (e restErr) Message() string {
