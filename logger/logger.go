@@ -10,10 +10,9 @@ import (
 )
 
 const (
-	envLogLevel = "LOG_LEVEL"
+	envLogLevel  = "LOG_LEVEL"
 	envLogOutput = "LOG_OUTPUT"
 )
-
 
 var (
 	log logger
@@ -24,7 +23,7 @@ type loggerInterface interface {
 	Printf(string, ...interface{})
 }
 
-type logger struct {	
+type logger struct {
 	log *zap.Logger
 }
 
@@ -32,18 +31,17 @@ func GetLogger() loggerInterface {
 	return log
 }
 
-func (l logger) Printf(format string, v...interface{}) {
+func (l logger) Printf(format string, v ...interface{}) {
 	if len(v) == 0 {
 		Info(format)
 		return
 	}
-	Info(fmt.Sprintf(format, v...))	
+	Info(fmt.Sprintf(format, v...))
 }
 
-func (l logger) Print(v...interface{}) {
-	Info(fmt.Sprintf("%v", v...))	
+func (l logger) Print(v ...interface{}) {
+	Info(fmt.Sprintf("%v", v...))
 }
-
 
 func init() {
 	logConfig := zap.Config{
@@ -66,7 +64,7 @@ func init() {
 	}
 }
 
-func getOutput() string{
+func getOutput() string {
 	ret := os.Getenv(strings.ToLower(strings.TrimSpace(envLogOutput)))
 	if ret == "" {
 		return "output"
@@ -76,10 +74,14 @@ func getOutput() string{
 
 func getLevel() zapcore.Level {
 	switch os.Getenv(strings.ToLower(strings.TrimSpace(envLogLevel))) {
-	case "debug": return zap.DebugLevel
-	case "info": return zap.InfoLevel
-	case "error": return zap.ErrorLevel
-	default: return zap.InfoLevel
+	case "debug":
+		return zap.DebugLevel
+	case "info":
+		return zap.InfoLevel
+	case "error":
+		return zap.ErrorLevel
+	default:
+		return zap.InfoLevel
 	}
 }
 
